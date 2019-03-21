@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <ThresholdFilter level="error" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %class{36} %L %M - %msg%xEx%n"/>
+        </Console>
+        <!--<File name="test" fileName="E:/dkd/customs_client/test.log" append="true">-->
+            <!--<PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %class{36} %L %M - %msg%xEx%n"/>-->
+        <!--</File>-->
+        <RollingFile name="AllLogRollingFile" fileName="C:/dkd/enterprise_client/all/all_enterprise_client.log"
+                     filePattern="C:/demo/enterprise_client/all/info-%d{yyyy-MM-dd}.log">
+            <PatternLayout pattern="%d{yyyy-MM-dd 'at' HH:mm:ss z} %-5level %class{36} %L %M - %msg%xEx%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true" />
+                <!--超过 则新增-->
+                <!--<SizeBasedTriggeringPolicy size="1024MB"/>-->
+            </Policies>
+            <!--共有8个级别，按照从低到高为：All < Trace < Debug < Info < Warn < Error < Fatal < OFF.-->
+            <!--程序会打印高于或等于所设置级别的日志，设置的日志等级越高，打印出来的日志就越少。-->
+            <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="DENY"/>
+            <!--最大文件数据  默认为7-->
+            <DefaultRolloverStrategy max="20"/>
+        </RollingFile>
+        <RollingFile name="ErrorRollingFile" fileName="C:/dkd/enterprise_client/warn/warn.log"
+                     filePattern="C:/demo/enterprise_client/warn/warn-%d{yyyy-MM-dd}.log">
+            <PatternLayout pattern="%d{yyyy-MM-dd 'at' HH:mm:ss z} %-5level %class{36} %L %M - %msg%xEx%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true" />
+                <!--超过 刚新增-->
+                <!--<SizeBasedTriggeringPolicy size="1024MB"/>-->
+            </Policies>
+            <ThresholdFilter level="warn" onMatch="ACCEPT" onMismatch="DENY"/>
+            <!--最大文件数据  默认为7-->
+            <DefaultRolloverStrategy max="20"/>
+        </RollingFile>
+    </appenders>
+
+    <loggers>
+        <root level="info">
+            <appender-ref ref="AllLogRollingFile"/>
+            <appender-ref ref="Console"/>
+            <appender-ref ref="ErrorRollingFile"/>
+        </root>
+    </loggers>
+</configuration>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>User</title>
+		<!--
+        	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+        -->
+		<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+		<script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-2.1.4.min.js"></script>
+		<script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+		<script src="../static/js/hyty_springdemo.js"></script>
+	</head>
+	<style>
+		table tr:nth-child(even){ 
+		background:#C6C8CA; 
+	}
+	.modal-backdrop {
+	  opacity: 0 !important;
+	  filter: alpha(opacity=0) !important;
+	}
+	</style>
+	<body style="">
+		<div style=" margin-top: 50px;margin-left: 10%;">
+			<div>
+				<span>所有用户:</span>
+				<input type="button" onclick="queryuser()" value="查询" />
+			</div>
+			<!--
+				<div style="margin-top: 5px;">
+				<span>按照用户编号:</span>
+				<input type="text"  id="UID" />
+				<input type="button" onclick="queryuserbyid()" value="查询" />
+			</div>
+			-->
+		</div>
+	    <div class="table-responsive" style="margin:0 auto;width:80%;margin-top: 10px;">
+	    	<table class="table table-bordered" id="table_id" style="white-space: nowrap; vertical-align:middle">
+			   <thead>
+			     <tr>
+			     	<th style="display: none;">ID</th>
+			       <th>用户编号</th>
+			       <th>用户名称</th>
+			       <th>生效时间</th>
+			       <th style="display:none;">状态</th>
+			       <th>操作</th>
+			     </tr>
+			   </thead>
+			   <tbody>
+			    
+	    	  </tbody>
+	    	</table>
+	    </div>
+	 	<div>
+	 		<div class="modal" id="myModal" role="dialog"  data-backdrop="static" data-keyboard="false"> 
+	 		<div class="modal-dialog"> 
+	 			<div class="modal-content"> 
+	 				<div class="modal-header"> 
+	 					<h4 class="modal-title" id="myModalLabel">用户具体信息</h4> 
+	 				</div> 
+	 				<div class="modal-body">
+	 					<div class="table-responsive" style="margin:0 auto;width:100%;">
+					    	<table class="table table-bordered" id="table_modal" style="white-space: nowrap; vertical-align:middle">
+							   <thead>
+							     <tr>
+							       <th style="display:none;">ID</th>
+							       <th>工作单位</th>
+							       <th>工作性质</th>
+							       <th>工作年限</th>
+							       <th>工号</th>
+							       <th>起始时间</th>
+							       <th>结束时间</th>
+							       <th>操作</th>
+							     </tr>
+							   </thead>
+							   <tbody id="mymodal_tbody">
+							     
+					    	  </tbody>
+					    	</table>
+					    </div>
+	 				</div> 
+	 				<div class="modal-footer"> 
+	 					<button type="button" class="btn btn-default" data-dismiss="modal" >关闭</button> 
+	 				</div>
+	 			</div>
+	 		</div>
+	 	</div>
+	 	</div>
+
+		<div>
+			<div class="modal" id="myModalUp" role="dialog"  data-backdrop="static" data-keyboard="false"> 
+	 		<div class="modal-dialog"> 
+	 			<div class="modal-content"> 
+	 				<div class="modal-header"> 
+	 					<h4 class="modal-title" id="myModalLabel">修改用户信息</h4> 
+	 				</div> 
+	 				<div class="modal-body">
+	 					<div class="table-responsive" style="margin:0 auto;width:100%;">
+					    	<table class="table table-bordered" id="table_modal1" style="white-space: nowrap; vertical-align:middle">
+							   <thead>
+							     <tr>
+							     	<th style="display: none;">ID</th>
+							       <th>用户编号</th>
+							       <th>用户名称</th>
+							       <th>生效时间</th>
+							       <th style="display:none;">状态</th>
+							     </tr>
+							   </thead>
+							   <tbody>
+							     <tr>
+							     	<td style="display: none;"><input type="text" id="sysId" /> </td>
+							       <td><input type="text" id="UserId" /> </td>
+							       <td><input type="text" id="Username" /> </td>
+							       <td><input type="text" id="Usertime" /> </td>
+							       <td style="display:none;">表格单元格</td>
+							     </tr>
+					    	  </tbody>
+					    	</table>
+					    </div>
+	 				</div> 
+	 				<div class="modal-footer"> 
+	 					<button type="button" class="btn btn-default" data-dismiss="modal" >关闭</button> 
+	 					<button type="button" class="btn btn-default" onclick="saveuser()" >保存</button> 
+	 				</div>
+	 			</div>
+	 		</div>
+	 	</div>
+		</div>
+	</body>
+</html>
